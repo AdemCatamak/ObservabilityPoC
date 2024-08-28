@@ -1,4 +1,4 @@
-# Passing Notes
+# Observability PoC
 
 ## Overview
 
