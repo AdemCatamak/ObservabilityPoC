@@ -15,26 +15,25 @@ If you choose this method, you will need:
 
 When the DevContainer starts, it will automatically provision instances of Grafana, Prometheus, and Node-Exporter.
 
-- Port Forwarding: The DevContainer will forward requests from port 8181 on your local machine to port 8181 inside the container. This is the port where your application is configured to listen.
-- Prometheus Access: You can access the Prometheus application at localhost:9090.
-- Grafana Access: You can access the Grafana dashboard at localhost:3000. Use the following credentials to log in:
+- The DevContainer: Requests to the **localhost:8181** endpoint will be forwarded to port 8181 within the container. This is the port your application is configured to listen on.
+- Prometheus Access: You can access the Prometheus application at **localhost:9090**.
+- Grafana Access: You can access the Grafana dashboard at **localhost:3000**. Use the following credentials to log in:
     - Username: admin
     - Password: grafana
 
 ### Docker-Compose
 
-If you're not interested in the debugging process, you can create all the necessary components by running the command below. This will set up 3 instances of application and 1 ngnix component, as well as Grafana, Prometheus, and 
+If you're not interested in the debugging process, you can create all the necessary components by running the command below. This will set up 3 instances of application and 1 ngnix component, as well as Grafana, Prometheus, and Node-Exporter.
 
 ```
 docker compose -f .devcontainer/docker-compose.yml -f .devcontainer/docker-compose.infra.yml up
 ```
 
-Node-Exporter.
-- Prometheus Access: You can access the Prometheus application at localhost:9090.
-- Grafana Access: You can access the Grafana dashboard at localhost:3000. Use the following credentials to log in:
+- Prometheus Access: You can access the Prometheus application at **localhost:9090**.
+- Grafana Access: You can access the Grafana dashboard at **localhost:3000**. Use the following credentials to log in:
     - Username: admin
     - Password: grafana
-- Nginx Access: You can access to your application over ngnix that uses localhost:8080 to forward your requests.
+- Nginx Access: You can access to your application over ngnix that uses **localhost:8080** to forward your requests.
 
 ## Metric Generation
 
