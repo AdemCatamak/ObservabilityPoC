@@ -43,3 +43,26 @@ Node-Exporter.
 - **`/echo/:statusCode` Endpoint**: This endpoint becomes available as soon as the application is running. When you provide a status code in the URL, the endpoint will respond with that exact HTTP status code. This allows you to supply data to the 'Op App - Status Code Counter' metric visualization within the custom dashboard.
 
 - **`Config Tracking`**: When running the application within the DevContainer, you'll have the ability to interact with the data on the 'Op App - Config Tracker' metric visualizer. Any changes made to the `config.yaml` file during the application's runtime will be monitored by the application. A background service periodically updates the Prometheus metric values based on the information in the config file.
+
+## Additional Information
+
+### Prometheus Configuration
+
+The file located at `.devcontainer/prometheus/prometheus.yml` contains configuration details for the metric sources that Prometheus will scrape. This includes:
+
+- The endpoint where Prometheus will scrape its own metrics.
+- The endpoint for gathering node-specific metrics via `node-exporter`.
+- Configuration for scraping metrics from the dev container or scaled application containers.
+
+### Grafana Datasource Configuration
+
+The file `.devcontainer/grafana/provisioning/datasources/datasource.yml` specifies the data sources that Grafana will use. In this project, Prometheus is the sole data source, so the configuration is focused on connecting to Prometheus.
+
+### Grafana Dashboard 
+
+The file `.devcontainer/grafana/provisioning/dashboards/dashboard.yml` includes settings for ensuring that Grafana has pre-configured dashboards during the provisioning process. This allows Grafana to automatically import the prepared dashboards.
+
+The `.devcontainer/grafana/dashboards/` directory contains configurations for the custom dashboards created. There are two dashboards available:
+
+1. A dashboard displaying node-specific metrics collected via `node-exporter`.
+2. A dashboard presenting the custom metrics generated within the application.
