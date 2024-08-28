@@ -1,0 +1,17 @@
+{
+  "name": "ObservabilityPoCDevContainer",
+  "dockerComposeFile": [
+    "docker-compose.infra.yml",
+    "docker-compose.dev.yml"
+  ],
+  "service": "op-dev-container",
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+  "customizations" : {
+    "jetbrains" : {
+      "backend" : "GoLand"
+    }
+  }
+}
