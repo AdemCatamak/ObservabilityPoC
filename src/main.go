@@ -28,7 +28,7 @@ func main() {
 	defer cancel() // Ensure the context is cancelled on program exit
 
 	// Start the background task
-	go recordTestConfig(ctx, TestConfigGaugeMetric)
+	go recordTestConfig(ctx, ConfigVersionGaugeMetric)
 
 	// Build Http Server
 	port := viper.GetString("PORT")
@@ -134,7 +134,7 @@ func responseStatusCodeCounterMetricMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func recordTestConfig(ctx context.Context, testConfigMetric *prometheus.GaugeVec) {
+func recordTestConfig(ctx context.Context, configVersionMetric *prometheus.GaugeVec) {
 	for {
 		select {
 		case <-ctx.Done():
@@ -142,32 +142,11 @@ func recordTestConfig(ctx context.Context, testConfigMetric *prometheus.GaugeVec
 			return
 
 		default:
-			feedMetric := func(key string) {
-				var err error
-				var f float64
-
-				if key == "Test1" && viper.GetBool("Test1Error") {
-					err = errors.New("Unexpected Error")
-				} else {
-					f = viper.GetFloat64(key)
-				}
-
-				if err != nil {
-					testConfigMetric.DeleteLabelValues("Test1")
-				} else {
-					testConfigMetric.With(prometheus.Labels{"test_config_name": key}).Set(f)
-				}
+			configVersion := viper.GetString("ConfigVersion")
+			if configVersion == "" {
+				configVersion = "No Flight"
 			}
-
-			enabled := viper.GetBool("TestMetricEnabled")
-			if enabled {
-				feedMetric("Test1")
-				feedMetric("Test2")
-				feedMetric("Test3")
-			} else {
-				testConfigMetric.Reset()
-			}
-
+			configVersionMetric.With(prometheus.Labels{"config_version": configVersion}).Set(1)
 			time.Sleep(5 * time.Second)
 		}
 	}

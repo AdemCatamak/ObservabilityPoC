@@ -13,7 +13,7 @@ var RequestCounterMetric = promauto.NewCounterVec(
 	[]string{"node"},
 )
 
-var	ResponseStatusCodeCounterMetric = promauto.NewCounterVec(
+var ResponseStatusCodeCounterMetric = promauto.NewCounterVec(
 	prometheus.CounterOpts{
 		Name: "app_status_code_counter",
 		Help: "The status code counter",
@@ -21,10 +21,10 @@ var	ResponseStatusCodeCounterMetric = promauto.NewCounterVec(
 	[]string{"node", "path", "status_code"},
 )
 
-var TestConfigGaugeMetric = promauto.NewGaugeVec(
+var ConfigVersionGaugeMetric = promauto.NewGaugeVec(
 	prometheus.GaugeOpts{
-		Name: "app_test_config_gauge",
-		Help: "The test config gauge",
+		Name: "app_config_version_gauge",
+		Help: "The config version gauge",
 	},
-	[]string{"test_config_name"},
+	[]string{"config_version"},
 )

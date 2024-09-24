@@ -4,9 +4,12 @@ services:
     container_name: op-dev-container
     image: golang:1.22
     volumes:
-      - ../:/workspace:cached
+      - ../:/workspace
     command: sleep infinity
     environment:
       - PORT=8181
+      - GOROOT=/usr/local/go
+      - GOPATH=/go
+      - GO111MODULE=on
     ports:
       - "8181:8181"
