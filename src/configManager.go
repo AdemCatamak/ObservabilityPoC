@@ -25,8 +25,7 @@ func loadConfig() {
 
 	log.Print("loadConfig function was triggered")
 
-	viper.SetConfigFile("config.yaml")
-	viper.SetConfigType("yaml")
+	viper.SetConfigFile("config.json")
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Error reading config file: %v", err)
 	}

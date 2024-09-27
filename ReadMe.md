@@ -41,7 +41,7 @@ docker compose -f .devcontainer/docker-compose.yml -f .devcontainer/docker-compo
 
 - **`/echo/:statusCode` Endpoint**: This endpoint becomes available as soon as the application is running. When you provide a status code in the URL, the endpoint will respond with that exact HTTP status code. This allows you to supply data to the 'Op App - Status Code Counter' metric visualization within the custom dashboard.
 
-- **`Config Tracking`**: When running the application within the DevContainer, you'll have the ability to interact with the data on the 'Op App - Config Tracker' metric visualizer. Any changes made to the `config.yaml` file during the application's runtime will be monitored by the application. A background service periodically updates the Prometheus metric values based on the information in the config file.
+- **`Config Tracking`**: When running the application within the DevContainer, you'll have the ability to interact with the data on the 'Op App - Config Tracker' metric visualizer. Any changes made to the `config.json` file during the application's runtime will be monitored by the application. A background service periodically updates the Prometheus metric values based on the information in the config file.
 
 ## Additional Information
 

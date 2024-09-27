@@ -16,7 +16,7 @@ services:
       replicas: 3
 
   op-proxy:
-    image: nginx:alpine
+    image: nginx:1.27.1-alpine
     container_name: op-proxy
     hostname: 'nginx'
     restart: unless-stopped
