@@ -146,6 +146,7 @@ func recordTestConfig(ctx context.Context, configVersionMetric *prometheus.Gauge
 			if configVersion == "" {
 				configVersion = "No Flight"
 			}
+			configVersionMetric.Reset()
 			configVersionMetric.With(prometheus.Labels{"config_version": configVersion}).Set(1)
 			time.Sleep(5 * time.Second)
 		}
